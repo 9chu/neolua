@@ -779,8 +779,10 @@ namespace Neo.IronLua
 							byteChar = unchecked((byte)(c - '0'));
 							NextChar(42);
 						}
+						else if (c == '\n') { AppendValue('\n'); NextChar(40); }
 						else
-							EatChar(40);
+						    return CreateToken(0, LuaToken.InvalidString);
+						//EatChar(40);
 						break;
 					case 42:
 						if (c >= '0' && c <= '9')
